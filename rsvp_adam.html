@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>יום הולדת לאדם 🎉</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      max-width: 520px;
+      width: 100%;
+      padding: 48px 40px;
+      text-align: center;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    }
+
+    .emoji-big {
+      font-size: 64px;
+      margin-bottom: 16px;
+      display: block;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 36px;
+    }
+
+    .details {
+      background: rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .detail-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .detail-icon {
+      font-size: 1.4rem;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .detail-text {
+      text-align: right;
+    }
+
+    .detail-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .detail-value {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 0;
+    }
+
+    .form-section h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 20px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-family: 'Heebo', sans-serif;
+      font-size: 1rem;
+      color: #fff;
+      outline: none;
+      transition: border 0.2s, background 0.2s;
+      text-align: right;
+    }
+
+    input[type="text"]::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+
+    input[type="text"]:focus {
+      border-color: rgba(100,180,255,0.5);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Heebo', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #e96c6c, #e05be0);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(233, 108, 108, 0.35);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(233, 108, 108, 0.45);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 24px;
+      background: rgba(100,220,100,0.1);
+      border: 1px solid rgba(100,220,100,0.25);
+      border-radius: 16px;
+      margin-top: 16px;
+    }
+
+    .success.show { display: flex; }
+
+    .success-emoji { font-size: 2.5rem; }
+
+    .success-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #90f090;
+    }
+
+    .success-sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .confirmed-list {
+      margin-top: 28px;
+      text-align: right;
+    }
+
+    .confirmed-list h3 {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .confirmed-names {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .name-tag {
+      background: rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <span class="emoji-big">🎂</span>
+    <h1>יום הולדת לאדם!</h1>
+    <p class="subtitle">מוזמנים לחגוג איתנו 🥳</p>
+
+    <div class="details">
+      <div class="detail-row">
+        <div class="detail-icon">📅</div>
+        <div class="detail-text">
+          <div class="detail-label">תאריך</div>
+          <div class="detail-value">יום ראשון, 10.05.2026</div>
+        </div>
+      </div>
+      <hr class="divider"/>
+      <div class="detail-row">
+        <div class="detail-icon">🕕</div>
+        <div class="detail-text">
+          <div class="detail-label">שעה</div>
+          <div class="detail-value">18:00</div>
+        </div>
+      </div>
+      <hr class="divider"/>
+      <div class="detail-row">
+        <div class="detail-icon">📍</div>
+        <div class="detail-text">
+          <div class="detail-label">מיקום</div>
+          <div class="detail-value">פיקא 44 — המבורגר</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h2>אשרו הגעה 👇</h2>
+      <div class="input-row">
+        <input type="text" id="lastName" placeholder="שם משפחה" />
+        <input type="text" id="firstName" placeholder="שם פרטי" />
+      </div>
+      <button class="btn" onclick="confirmRSVP()">✅ אני מגיע/ה!</button>
+    </div>
+
+    <div class="success" id="successBox">
+      <span class="success-emoji">🎉</span>
+      <div class="success-text" id="successMsg"></div>
+      <div class="success-sub">נתראה ב-10.05 ב-18:00!</div>
+    </div>
+
+    <div class="confirmed-list" id="confirmedList" style="display:none">
+      <h3>אישרו הגעה</h3>
+      <div class="confirmed-names" id="confirmedNames"></div>
+    </div>
+  </div>
+
+  <script>
+    const confirmed = [];
+
+    function confirmRSVP() {
+      const first = document.getElementById('firstName').value.trim();
+      const last = document.getElementById('lastName').value.trim();
+
+      if (!first || !last) {
+        document.getElementById('firstName').style.borderColor = first ? '' : 'rgba(255,100,100,0.6)';
+        document.getElementById('lastName').style.borderColor = last ? '' : 'rgba(255,100,100,0.6)';
+        return;
+      }
+
+      const fullName = `${first} ${last}`;
+      confirmed.push(fullName);
+
+      document.getElementById('successMsg').textContent = `${fullName}, תודה על האישור! 🎈`;
+      document.getElementById('successBox').classList.add('show');
+
+      document.getElementById('firstName').value = '';
+      document.getElementById('lastName').value = '';
+      document.getElementById('firstName').style.borderColor = '';
+      document.getElementById('lastName').style.borderColor = '';
+
+      // update confirmed list
+      const listEl = document.getElementById('confirmedList');
+      const namesEl = document.getElementById('confirmedNames');
+      listEl.style.display = 'block';
+      namesEl.innerHTML = confirmed.map(n => `<span class="name-tag">✓ ${n}</span>`).join('');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter') confirmRSVP();
+    });
+  </script>
+</body>
+</html>
